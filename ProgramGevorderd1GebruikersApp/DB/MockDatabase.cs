@@ -39,7 +39,7 @@ namespace ProgramGevorderd1GebruikersApp.DB
                  r.Customer.FirstName.Contains(name, StringComparison.OrdinalIgnoreCase) ||
                  r.Customer.LastName.Contains(name, StringComparison.OrdinalIgnoreCase)) &&
                 (!date.HasValue || (r.StartDate <= date && r.EndDate >= date)) &&
-                (location == null || r.Car.EstablishmentId == location.Id)
+                (location == null || r.Establishment.Id == location.Id)
             ).ToList();
         }
 

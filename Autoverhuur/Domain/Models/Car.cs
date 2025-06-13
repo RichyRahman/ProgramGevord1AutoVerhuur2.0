@@ -12,5 +12,6 @@ namespace Autoverhuur.Domain.Models
         public required string Model { get; set; }
         public required int Seats { get; set; }
         public required string MotorType { get; set; }
+        public int Id { get; set; }
     }
 }

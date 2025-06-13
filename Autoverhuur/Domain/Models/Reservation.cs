@@ -15,6 +15,8 @@ namespace Autoverhuur.Domain.Models
 
         public int Id { get; set; }
 
+        public required Establishment Establishment { get; set; }
+
         public string Period => $"{StartDate:dd/MM/yyyy} - {EndDate:dd/MM/yyyy}";
     }
 }
