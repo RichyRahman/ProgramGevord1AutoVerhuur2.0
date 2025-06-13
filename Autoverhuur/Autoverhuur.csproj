@@ -12,8 +12,4 @@
     <PackageReference Include="xunit.extensibility.core" Version="2.9.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Databank\" />
-  </ItemGroup>
-
 </Project>
