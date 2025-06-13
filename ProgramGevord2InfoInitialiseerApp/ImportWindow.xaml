@@ -1,0 +1,227 @@
+﻿<Window x:Class="ProgramGevord1InfoInitialiseerApp.ImportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gegevens Initialisatie" 
+        Height="500" 
+        Width="600"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#F8F9FA">
+
+    <Window.Resources>
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#005A9E"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#004578"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Primary Button Style -->
+        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#28A745"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#218838"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#1E7E34"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- File Section Style -->
+        <Style x:Key="FileSection" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E9ECEF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,8"/>
+        </Style>
+
+        <!-- Label Style -->
+        <Style x:Key="FileLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Foreground" Value="#495057"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Result TextBlock Style -->
+        <Style x:Key="ResultTextStyle" TargetType="TextBlock">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="LineHeight" Value="20"/>
+            <Setter Property="Foreground" Value="#28A745"/>
+        </Style>
+    </Window.Resources>
+
+    <Border Background="White" CornerRadius="8" Margin="20" 
+            BorderBrush="#DEE2E6" BorderThickness="1">
+        <Grid Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,25">
+                <TextBlock Text="Gegevens Initialisatie" 
+                          FontSize="24" 
+                          FontWeight="SemiBold" 
+                          Foreground="#212529" 
+                          Margin="0,0,0,5"/>
+                <TextBlock Text="Selecteer de bestanden die u wilt importeren" 
+                          FontSize="14" 
+                          Foreground="#6C757D"/>
+            </StackPanel>
+
+            <!-- File Selection Section -->
+            <StackPanel Grid.Row="1" Margin="0,0,0,20">
+                <TextBlock Text="Bestanden selecteren" 
+                          FontSize="16" 
+                          FontWeight="Medium" 
+                          Foreground="#495057" 
+                          Margin="0,0,0,15"/>
+
+                <!-- Vestigingen File -->
+                <Border Style="{StaticResource FileSection}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <Label Content="Vestigingen bestand" Style="{StaticResource FileLabel}" />
+                            <TextBlock Text="CSV bestand met vestigingsinformatie" 
+                                      FontSize="12" 
+                                      Foreground="#6C757D" 
+                                      Margin="0,2,0,0"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="1" 
+                               Content="Selecteer..." 
+                               Style="{StaticResource ModernButton}"
+                               Click="SelectEstablishmentFile" 
+                               VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Klanten File -->
+                <Border Style="{StaticResource FileSection}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <Label Content="Klanten bestand" Style="{StaticResource FileLabel}" />
+                            <TextBlock Text="CSV bestand met klantgegevens" 
+                                      FontSize="12" 
+                                      Foreground="#6C757D" 
+                                      Margin="0,2,0,0"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="1" 
+                               Content="Selecteer..." 
+                               Style="{StaticResource ModernButton}"
+                               Click="SelectCustomerFile" 
+                               VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Auto's File -->
+                <Border Style="{StaticResource FileSection}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <Label Content="Auto's bestand" Style="{StaticResource FileLabel}" />
+                            <TextBlock Text="CSV bestand met voertuiginformatie" 
+                                      FontSize="12" 
+                                      Foreground="#6C757D" 
+                                      Margin="0,2,0,0"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="1" 
+                               Content="Selecteer..." 
+                               Style="{StaticResource ModernButton}"
+                               Click="SelectCarFile" 
+                               VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <!-- Import Button -->
+            <Button Grid.Row="2" 
+                   Content="🚀 Voer import uit" 
+                   Style="{StaticResource PrimaryButton}"
+                   Click="ImportButton_Click" 
+                   HorizontalAlignment="Stretch"
+                   Height="45"
+                   Margin="0,10,0,25"/>
+
+            <!-- Results Section -->
+            <StackPanel Grid.Row="3" Margin="0,0,0,10">
+                <TextBlock Text="Resultaten" 
+                          FontSize="16" 
+                          FontWeight="Medium" 
+                          Foreground="#495057"/>
+            </StackPanel>
+
+            <!-- Results Display -->
+            <Border Grid.Row="4" 
+                   Background="#F8F9FA" 
+                   BorderBrush="#DEE2E6" 
+                   BorderThickness="1" 
+                   CornerRadius="6"
+                   MinHeight="100">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                             HorizontalScrollBarVisibility="Disabled">
+                    <TextBlock x:Name="ResultText2" 
+                              Style="{StaticResource ResultTextStyle}"
+                              TextWrapping="Wrap"
+                              Text="Klik op 'Voer import uit' om te beginnen..."/>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
